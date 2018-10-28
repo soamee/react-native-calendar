@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Dimensions,
   ScrollView,
@@ -22,59 +23,12 @@ function getNumberOfWeeks(month, weekStart) {
   return Math.ceil((offset + days) / 7);
 }
 
-export default class Calendar extends Component {
+class Calendar extends Component {
 
   state = {
     currentMonthMoment: moment(this.props.startDate),
     selectedMoment: moment(this.props.selectedDate),
     rowHeight: null,
-  };
-
-  static propTypes = {
-    currentMonth: PropTypes.any,
-    customStyle: PropTypes.object,
-    dayHeadings: PropTypes.array,
-    eventDates: PropTypes.array,
-    monthNames: PropTypes.array,
-    nextButtonText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    onDateSelect: PropTypes.func,
-    onSwipeNext: PropTypes.func,
-    onSwipePrev: PropTypes.func,
-    onTouchNext: PropTypes.func,
-    onTouchPrev: PropTypes.func,
-    prevButtonText: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.object
-    ]),
-    scrollEnabled: PropTypes.bool,
-    selectedDate: PropTypes.any,
-    showControls: PropTypes.bool,
-    showEventIndicators: PropTypes.bool,
-    startDate: PropTypes.any,
-    titleFormat: PropTypes.string,
-    today: PropTypes.any,
-    weekStart: PropTypes.number,
-  };
-
-  static defaultProps = {
-    customStyle: {},
-    width: DEVICE_WIDTH,
-    dayHeadings: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-    eventDates: [],
-    monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    nextButtonText: 'Next',
-    prevButtonText: 'Prev',
-    scrollEnabled: false,
-    showControls: false,
-    showEventIndicators: false,
-    startDate: moment().format('YYYY-MM-DD'),
-    titleFormat: 'MMMM YYYY',
-    today: moment(),
-    weekStart: 1,
   };
 
   componentDidMount() {
@@ -336,3 +290,52 @@ export default class Calendar extends Component {
     );
   }
 }
+
+Calendar.defaultProps = {
+  customStyle: {},
+  width: DEVICE_WIDTH,
+  dayHeadings: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+  eventDates: [],
+  monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  nextButtonText: 'Next',
+  prevButtonText: 'Prev',
+  scrollEnabled: false,
+  showControls: false,
+  showEventIndicators: false,
+  startDate: moment().format('YYYY-MM-DD'),
+  titleFormat: 'MMMM YYYY',
+  today: moment(),
+  weekStart: 1,
+};
+
+Calendar.propTypes = {
+  currentMonth: PropTypes.any,
+  customStyle: PropTypes.object,
+  dayHeadings: PropTypes.array,
+  eventDates: PropTypes.array,
+  monthNames: PropTypes.array,
+  nextButtonText: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
+  onDateSelect: PropTypes.func,
+  onSwipeNext: PropTypes.func,
+  onSwipePrev: PropTypes.func,
+  onTouchNext: PropTypes.func,
+  onTouchPrev: PropTypes.func,
+  prevButtonText: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
+  scrollEnabled: PropTypes.bool,
+  selectedDate: PropTypes.any,
+  showControls: PropTypes.bool,
+  showEventIndicators: PropTypes.bool,
+  startDate: PropTypes.any,
+  titleFormat: PropTypes.string,
+  today: PropTypes.any,
+  weekStart: PropTypes.number,
+};
+
+export default Calendar;

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   Text,
   TouchableOpacity,
@@ -8,23 +9,7 @@ import {
 
 import styles from './styles';
 
-export default class Day extends Component {
-  static defaultProps = {
-    customStyle: {},
-  }
-
-  static propTypes = {
-    caption: PropTypes.any,
-    customStyle: PropTypes.object,
-    filler: PropTypes.bool,
-    event: PropTypes.object,
-    isSelected: PropTypes.bool,
-    isToday: PropTypes.bool,
-    isWeekend: PropTypes.bool,
-    onPress: PropTypes.func,
-    showEventIndicators: PropTypes.bool,
-  }
-
+class Day extends Component {
   dayCircleStyle = (isWeekend, isSelected, isToday, event) => {
     const { customStyle } = this.props;
     const dayCircleStyle = [styles.dayCircleFiller, customStyle.dayCircleFiller];
@@ -104,3 +89,21 @@ export default class Day extends Component {
     );
   }
 }
+
+Day.defaultProps = {
+  customStyle: {},
+}
+
+Day.propTypes = {
+  caption: PropTypes.any,
+  customStyle: PropTypes.object,
+  filler: PropTypes.bool,
+  event: PropTypes.object,
+  isSelected: PropTypes.bool,
+  isToday: PropTypes.bool,
+  isWeekend: PropTypes.bool,
+  onPress: PropTypes.func,
+  showEventIndicators: PropTypes.bool,
+}
+
+export default Day;
